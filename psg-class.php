@@ -491,7 +491,7 @@ class nlwsPluginSkeletonGenerator {
 	 * @since 0.1
 	 */
 	function createMenu() {
-		$objectPage = add_object_page( 'Plugin Skeleton Generator', 'P.S.G.', 5, $this->plugin_prefix . 'managementpage', array($this, 'settingsPage'), $this->plugin_url . '/images/skeleton16.png');
+		$objectPage = add_object_page( 'Plugin Skeleton Generator', 'P.S.G.', 'install_plugins', $this->plugin_prefix . 'managementpage', array($this, 'settingsPage'), $this->plugin_url . '/images/skeleton16.png');
 		$settingsPage = add_submenu_page( $this->plugin_prefix . 'managementpage', 'Global Settings', 'Global Settings', 5, $this->plugin_prefix . 'managementpage', array($this, 'settingsPage') ); 
 		$addNewPage = add_submenu_page( $this->plugin_prefix . 'managementpage', 'Create New Plugin', 'Create New Plugin', 5, $this->plugin_prefix . 'createnewplugin', array($this, 'createNewPlugin') );
 		$helpPage = add_submenu_page( $this->plugin_prefix . 'managementpage', 'Help', 'Help', 5, $this->plugin_prefix . 'help', array($this, 'helpPage') );
