@@ -1,10 +1,12 @@
 <div class="wrap">
 	<div id="icon-skeleton" class="icon32"></div><h2>P.S.G. - Global Settings</h2>
 
-	<?php if ($_GET['settings-updated']==true) : ?>
-		<div id="setting-error-settings_updated" class="updated settings-error"> 
-			<p><strong>Settings saved.</strong></p>
-		</div>
+	<?php if (isset($_GET['settings-updated'])) : ?>
+		<?php if ($_GET['settings-update']==true) : ?>
+			<div id="setting-error-settings_updated" class="updated settings-error"> 
+				<p><strong>Settings saved.</strong></p>
+			</div>
+		<?php endif ?>
 	<?php endif ?>
 
 	<p>Thank you for downloading this awesome plugin.&nbsp; You are now on your way to creating your very own plugin.</p>
