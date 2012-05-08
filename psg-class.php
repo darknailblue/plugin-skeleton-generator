@@ -97,7 +97,7 @@ class nlwsPluginSkeletonGenerator {
 				 * Build the first section
 				 */
 				$contents = '=== ' . $pluginName . ' ===' . "\n";
-				$contents.= 'Contributors: ' . $pluginAuthorWordpress . "\n";
+				$contents.= "Contributors: $pluginAuthorWordpress\n";
 				$contents.= 'Donate link:' . $pluginDonateLink . "\n";
 				$contents.= 'Tags: ' . $pluginTags . "\n";
 				$contents.= 'Requires at least: ' . $pluginRequiresAtLeast . "\n";
