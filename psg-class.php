@@ -524,7 +524,7 @@ class nlwsPluginSkeletonGenerator {
 		/**
 		 * Load the view
 		 */
-		if ( $_POST['hid-formsubmit'] ) {
+		if ( isset($_POST['hid-formsubmit']) ) {
 			/**
 			 * Establish all working variables
 			 */
