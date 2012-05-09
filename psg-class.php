@@ -571,13 +571,13 @@ class nlwsPluginSkeletonGenerator {
 			 * Make the directories
 			 */
 			if ( !is_dir($pluginDirectory) ) {
-				if ( mkdir($pluginDirectory, 0644) ) {
+				if ( mkdir($pluginDirectory, 0755) ) {
 					$successMessage[] = 'New plugin directory created!';
 					
 					foreach ( $this->new_plugin_settings['plugin_directories'] as $directory ) {
 						$newDirectory = $pluginDirectory . '/' . $directory;
 						
-						if ( mkdir($newDirectory, 0644) )
+						if ( mkdir($newDirectory, 0755) )
 							$successMessage[] = $newDirectory . ' directory successfully created!';
 						else
 							$errorMessage[] = $newDirectory . ' directory could not be created!';
