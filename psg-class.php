@@ -355,7 +355,7 @@ class nlwsPluginSkeletonGenerator {
 
 						switch ($menu['type']) {
 							case 'object' :
-								$x.= "\t\t" . $objectvar . " = add_object_page( '" . $menu['title'] . "', '" . $menu['label'] . "', 5, " . $slugOutput . ", array(" . '$this' . ", '" . $pagefunction . "'));" . "\n";
+								$x.= "\t\t" . $objectvar . " = add_object_page( '" . $menu['title'] . "', '" . $menu['label'] . "', 'manage_options', " . $slugOutput . ", array(" . '$this' . ", '" . $pagefunction . "'));" . "\n";
 								$x.= "\t\t" . 'add_action ( \'admin_head-\' . ' . $objectvar . ', array($this, \'' . $pageHeadFunction . '\') );' . "\n";
 								$x.= "\n";
 								break;
@@ -367,7 +367,7 @@ class nlwsPluginSkeletonGenerator {
 								break;
 
 							case 'sub' :
-								$x.= "\t\t" . $objectvar . ' = add_submenu_page(' . $parentSlugOutput . ', \'' . $menu['title'] . "', '" . $menu['label'] . "', 5, " . $slugOutput . ", array(" . '$this' . ", '" . $pagefunction . "'));" . "\n";
+								$x.= "\t\t" . $objectvar . ' = add_submenu_page(' . $parentSlugOutput . ', \'' . $menu['title'] . "', '" . $menu['label'] . "', 'manage_options', " . $slugOutput . ", array(" . '$this' . ", '" . $pagefunction . "'));" . "\n";
 								$x.= "\t\t" . 'add_action ( \'admin_head-\' . ' . $objectvar . ', array($this, \'' . $pageHeadFunction . '\') );' . "\n";
 								$x.= "\n";
 						}
