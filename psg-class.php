@@ -355,7 +355,7 @@ class nlwsPluginSkeletonGenerator {
 
 						switch ($menu['type']) {
 							case 'object' :
-								$x.= "\t\t" . $objectvar . " = add_object_page( '" . $menu['title'] . "', '" . $menu['label'] . "', 5, " . $slugOutput . ", array(" . '$this' . ", '" . $pagefunction . "'));" . "\n";
+								$x.= "\t\t" . $objectvar . " = add_object_page( '" . $menu['title'] . "', '" . $menu['label'] . "', 'manage_options', " . $slugOutput . ", array(" . '$this' . ", '" . $pagefunction . "'));" . "\n";
 								$x.= "\t\t" . 'add_action ( \'admin_head-\' . ' . $objectvar . ', array($this, \'' . $pageHeadFunction . '\') );' . "\n";
 								$x.= "\n";
 								break;
@@ -367,7 +367,7 @@ class nlwsPluginSkeletonGenerator {
 								break;
 
 							case 'sub' :
-								$x.= "\t\t" . $objectvar . ' = add_submenu_page(' . $parentSlugOutput . ', \'' . $menu['title'] . "', '" . $menu['label'] . "', 5, " . $slugOutput . ", array(" . '$this' . ", '" . $pagefunction . "'));" . "\n";
+								$x.= "\t\t" . $objectvar . ' = add_submenu_page(' . $parentSlugOutput . ', \'' . $menu['title'] . "', '" . $menu['label'] . "', 'manage_options', " . $slugOutput . ", array(" . '$this' . ", '" . $pagefunction . "'));" . "\n";
 								$x.= "\t\t" . 'add_action ( \'admin_head-\' . ' . $objectvar . ', array($this, \'' . $pageHeadFunction . '\') );' . "\n";
 								$x.= "\n";
 						}
@@ -491,10 +491,10 @@ class nlwsPluginSkeletonGenerator {
 	 * @since 0.1
 	 */
 	function createMenu() {
-		$objectPage = add_object_page( 'Plugin Skeleton Generator', 'P.S.G.', 5, $this->plugin_prefix . 'managementpage', array($this, 'settingsPage'), $this->plugin_url . '/images/skeleton16.png');
-		$settingsPage = add_submenu_page( $this->plugin_prefix . 'managementpage', 'Global Settings', 'Global Settings', 5, $this->plugin_prefix . 'managementpage', array($this, 'settingsPage') ); 
-		$addNewPage = add_submenu_page( $this->plugin_prefix . 'managementpage', 'Create New Plugin', 'Create New Plugin', 5, $this->plugin_prefix . 'createnewplugin', array($this, 'createNewPlugin') );
-		$helpPage = add_submenu_page( $this->plugin_prefix . 'managementpage', 'Help', 'Help', 5, $this->plugin_prefix . 'help', array($this, 'helpPage') );
+		$objectPage = add_object_page( 'Plugin Skeleton Generator', 'P.S.G.', 'install_plugins', $this->plugin_prefix . 'managementpage', array($this, 'settingsPage'), $this->plugin_url . '/images/skeleton16.png');
+		$settingsPage = add_submenu_page( $this->plugin_prefix . 'managementpage', 'Global Settings', 'Global Settings', 'install_plugins', $this->plugin_prefix . 'managementpage', array($this, 'settingsPage') ); 
+		$addNewPage = add_submenu_page( $this->plugin_prefix . 'managementpage', 'Create New Plugin', 'Create New Plugin', 'install_plugins', $this->plugin_prefix . 'createnewplugin', array($this, 'createNewPlugin') );
+		$helpPage = add_submenu_page( $this->plugin_prefix . 'managementpage', 'Help', 'Help', 'install_plugins', $this->plugin_prefix . 'help', array($this, 'helpPage') );
 		
 		add_action ( 'admin_head-' . $settingsPage, array($this, 'settingsPageHead') );
 		add_action ( 'admin_head-' . $addNewPage, array($this, 'createNewPluginHead') );
@@ -524,7 +524,7 @@ class nlwsPluginSkeletonGenerator {
 		/**
 		 * Load the view
 		 */
-		if ( $_POST['hid-formsubmit'] ) {
+		if ( isset($_POST['hid-formsubmit']) ) {
 			/**
 			 * Establish all working variables
 			 */
@@ -571,13 +571,13 @@ class nlwsPluginSkeletonGenerator {
 			 * Make the directories
 			 */
 			if ( !is_dir($pluginDirectory) ) {
-				if ( mkdir($pluginDirectory, 0644) ) {
+				if ( mkdir($pluginDirectory, 0755) ) {
 					$successMessage[] = 'New plugin directory created!';
 					
 					foreach ( $this->new_plugin_settings['plugin_directories'] as $directory ) {
 						$newDirectory = $pluginDirectory . '/' . $directory;
 						
-						if ( mkdir($newDirectory, 0644) )
+						if ( mkdir($newDirectory, 0755) )
 							$successMessage[] = $newDirectory . ' directory successfully created!';
 						else
 							$errorMessage[] = $newDirectory . ' directory could not be created!';

@@ -1,6 +1,6 @@
 <div class="wrap">
 	<div id="icon-skeleton" class="icon32"></div><h2>P.S.G. - Create New Plugin</h2>
-	
+	<?php global $errorMessage, $successMessage; ?>	
 	<?php if ($errorMessage || $successMessage) : ?>
 
 		<div id="setting-error-settings_updated" class="updated settings-error"> 
